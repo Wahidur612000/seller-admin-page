@@ -30,18 +30,24 @@ const AdminPage = () => {
     localStorage.setItem(selectedCategory, JSON.stringify(updatedProducts[selectedCategory]));
   };
 
-  const handleRemoveProduct = (productId) => {
-    const updatedProducts = {
-      ...products,
-      [selectedCategory]: products[selectedCategory].filter((product) => product.id !== productId),
-    };
 
-    setProducts(updatedProducts);
-
-    // Save updated products to local storage
-    localStorage.setItem(selectedCategory, JSON.stringify(updatedProducts[selectedCategory]));
+const handleRemoveProduct = (productId) => {
+    setProducts((prevProducts) => {
+      // Iterate through all categories and remove the product with the given productId
+      const updatedProducts = {};
+      for (const category in prevProducts) {
+        updatedProducts[category] = prevProducts[category].filter((product) => product.id !== productId);
+      }
+  
+      // Save updated products to local storage
+      for (const category in updatedProducts) {
+        localStorage.setItem(category, JSON.stringify(updatedProducts[category]));
+      }
+  
+      return updatedProducts;
+    });
   };
-
+  
   return (
     <div>
       <h1>Seller's Admin Page</h1>
