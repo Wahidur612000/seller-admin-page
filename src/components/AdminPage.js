@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import CategorySelector from './CategorySelector';
 import ProductForm from './ProductForm';
 import ProductList from './ProductList';
 import './AdminPage.css';
@@ -52,8 +51,9 @@ const handleRemoveProduct = (productId) => {
     <div>
       <h1>Seller's Admin Page</h1>
       <h2>Add Product</h2>
-      <CategorySelector categories={categories} onSelectCategory={handleCategoryChange} />
-       <ProductForm category={selectedCategory} onAddProduct={handleAddProduct} />
+      
+       <ProductForm category={selectedCategory} onAddProduct={handleAddProduct}
+        categories={categories} onSelectCategory={handleCategoryChange} />
        
       <h2>Product List</h2>
       {categories.map(category => (
@@ -62,6 +62,7 @@ const handleRemoveProduct = (productId) => {
           category={category}
           products={products[category]}
           onRemoveProduct={handleRemoveProduct} 
+          
         />
       ))}
     </div>

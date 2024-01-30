@@ -16,7 +16,7 @@ input {
 button {
   padding: 10px;
   font-size: 16px;
-  background-color: #006400; /* Dark green color */
+  background-color: #006400;
   color: #fff;
   cursor: pointer;
   border: none;
